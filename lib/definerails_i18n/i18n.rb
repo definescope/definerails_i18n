@@ -44,7 +44,7 @@ module DefineRails
       module ClassMethods
 
         def default_url_options(options={})
-          options.merge(self.ui_language_param_name => I18n.locale)
+          self.add_language_to_default_url_options options
         end
 
       end
@@ -52,6 +52,14 @@ module DefineRails
 
     module Methods
       extend ActiveSupport::Concern
+
+      module ClassMethods
+
+        def add_language_to_default_url_options(options={})
+          options.merge(self.ui_language_param_name => I18n.locale)
+        end
+
+      end
 
       def definerails__set_locale
         new_locale = definerails__get_user_locale || I18n.default_locale
