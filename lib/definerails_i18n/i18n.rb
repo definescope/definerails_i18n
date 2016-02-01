@@ -15,12 +15,12 @@ module DefineRails
         }.merge(options)
 
         if options[:enable_cookie_support]
-          cattr_accessor :ui_language_cookie_name
+          mattr_accessor :ui_language_cookie_name
           self.ui_language_cookie_name = options[:cookie_name].to_sym
         end
 
         if options[:enable_param_support]
-          cattr_accessor :ui_language_param_name
+          mattr_accessor :ui_language_param_name
           self.ui_language_param_name = options[:param_name].to_sym
 
           if options[:setup_default_url_options]
@@ -44,7 +44,7 @@ module DefineRails
       module ClassMethods
 
         def default_url_options(options={})
-          self.add_language_to_default_url_options options
+          self.definerails__add_language_to_default_url_options options
         end
 
       end
@@ -55,7 +55,7 @@ module DefineRails
 
       module ClassMethods
 
-        def add_language_to_default_url_options(options={})
+        def definerails__add_language_to_default_url_options(options={})
           options.merge(self.ui_language_param_name => I18n.locale)
         end
 
