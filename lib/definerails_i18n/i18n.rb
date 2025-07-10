@@ -19,14 +19,14 @@ module DefineRails
 
         if options[:enable_cookie_support]
           mattr_accessor :ui_language_cookie_name
-          @ui_language_cookie_name = options[:cookie_name].to_sym
+          self.ui_language_cookie_name = options[:cookie_name].to_sym
         else
           mattr_reader :ui_language_cookie_name
         end
 
         if options[:enable_param_support]
           mattr_accessor :ui_language_param_name
-          @ui_language_param_name = options[:param_name].to_sym
+          self.ui_language_param_name = options[:param_name].to_sym
 
           if options[:setup_default_url_options] &&
              options[:setup_class_default_url_options]
